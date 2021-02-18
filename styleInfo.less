@@ -1,0 +1,73 @@
+* {
+  padding: 0;
+  margin: 0;
+
+}
+
+.positioner {
+  width: 1400px;
+  margin: 0 auto;
+}
+
+body {
+  background-color: pink;
+}
+
+header {
+  margin: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  list-style: none;
+  background-color: #050505;
+
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.4;
+  font-family: "Arial", sans-serif;
+}
+
+.menu {
+  &-container {
+    // TODO: почитать про flex и переверстать меню по флексам
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+      nav {
+        padding-left: 10px;
+      }
+
+      nav a {
+        padding: 8px 10px;
+      }
+
+      a {
+        color: #ffffff;
+        text-decoration: none;
+      }
+
+      li {
+        display: inline-block;
+      }
+   }
+}
+
+main {
+  position: relative;
+  background-color: #444341;
+
+  width: 100%;
+  height: 3710px;
+
+  list-style: none;
+
+  div {
+    color: white;
+  }
+  li {
+    color: white;
+    margin-left:20px;
+  }
+}
+
