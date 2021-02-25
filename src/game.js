@@ -32,19 +32,81 @@ export class Game {
 
         questionNumber = 0;
 
+        answerNumber = 0;
+
     renderStartButton() {
         const startButton = document.createElement('button');
         startButton.innerText = 'СТАРТ';
         startButton.addEventListener('click', () => {
             this.start();
         })
-        document.querySelector('.startButton').append(startButton);
+        document.querySelector('.begin').append(startButton);
     }
 
     start() {
+        let createForm = document.createElement('form');
+        createForm.setAttribute('class','info');
+        document.querySelector('.begin').append(createForm);
+
         let showQuestion = document.createElement('div');
         showQuestion.innerText = this.myQuestions[this.questionNumber].question;
-        document.querySelector('.showQuestion').append(showQuestion);
+        document.querySelector('.info').append(showQuestion);
+
+        let allAnswer = document.createElement('div');
+        allAnswer.setAttribute('class','allAnswer');
+        document.querySelector('.info').append(allAnswer);
+
+        let createButtonAnswer1 = document.createElement('input');
+        createButtonAnswer1.setAttribute('type','radio');
+        createButtonAnswer1.setAttribute('id','contactAnswer1');
+        createButtonAnswer1.setAttribute('name','contact');
+        createButtonAnswer1.setAttribute('value','123');
+        document.querySelector('.allAnswer').append(createButtonAnswer1);
+
+        let showTextAnswer1 = document.createElement('label');
+        showTextAnswer1.setAttribute('for','contactAnswer1');
+        showTextAnswer1.innerText = this.myQuestions[0].answer[this.answerNumber];
+        document.querySelector('.allAnswer').append(showTextAnswer1);
+
+        let createButtonAnswer2 = document.createElement('input');
+        createButtonAnswer2.setAttribute('type','radio');
+        createButtonAnswer2.setAttribute('id','contactAnswer1');
+        createButtonAnswer2.setAttribute('name','contact');
+        createButtonAnswer2.setAttribute('value','123');
+        document.querySelector('.allAnswer').append(createButtonAnswer2);
+
+        let showTextAnswer2 = document.createElement('label');
+        showTextAnswer2.setAttribute('for','contactAnswer1');
+        showTextAnswer2.innerText = this.myQuestions[0].answer[1];
+        document.querySelector('.allAnswer').append(showTextAnswer2);
+
+        let createButtonAnswer3 = document.createElement('input');
+        createButtonAnswer3.setAttribute('type','radio');
+        createButtonAnswer3.setAttribute('id','contactAnswer1');
+        createButtonAnswer3.setAttribute('name','contact');
+        createButtonAnswer3.setAttribute('value','123');
+        document.querySelector('.allAnswer').append(createButtonAnswer3);
+
+        let showTextAnswer3 = document.createElement('label');
+        showTextAnswer3.setAttribute('for','contactAnswer1');
+        showTextAnswer3.innerText = this.myQuestions[0].answer[2];
+        document.querySelector('.allAnswer').append(showTextAnswer3);
+
+        let createButtonAnswer4 = document.createElement('input');
+        createButtonAnswer4.setAttribute('type','radio');
+        createButtonAnswer4.setAttribute('id','contactAnswer1');
+        createButtonAnswer4.setAttribute('name','contact');
+        createButtonAnswer4.setAttribute('value','123');
+        document.querySelector('.allAnswer').append(createButtonAnswer4);
+
+        let showTextAnswer4 = document.createElement('label');
+        showTextAnswer4.setAttribute('for','contactAnswer1');
+        showTextAnswer4.innerText = this.myQuestions[0].answer[3];
+        document.querySelector('.allAnswer').append(showTextAnswer4);
+
+        let createDivAcceptButton = document.createElement('div');
+        createDivAcceptButton.setAttribute('class','acceptButton');
+        document.querySelector('.info').append(createDivAcceptButton);
 
         const acceptButton = document.createElement('button');
         acceptButton.setAttribute('type','submit');
@@ -54,16 +116,6 @@ export class Game {
         })
         document.querySelector('.acceptButton').append(acceptButton);
 
-        let showAnswer1 = document.createElement('input');
-        showAnswer1.setAttribute('type','radio');
-        showAnswer1.innerText = 'Привет';
-        document.querySelector('.showAnswer').append(showAnswer1);
-
-
-        // const showAnswer1 = document.createElement('input');
-        // showAnswer1.setAttribute('type','radio');
-        // showAnswer1.innerText = this.myQuestions[0].answer[0];
-        // document.querySelector('.startButton').append(showAnswer1);
     }
 
     // nextQuestion() {
