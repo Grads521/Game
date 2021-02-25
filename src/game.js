@@ -2,7 +2,8 @@ export class Game {
     constructor() {
         this.renderStartButton();
     }
-        myQuestions = [
+
+    myQuestions = [
         {
             question: 'Мой вопрос 1',
             answer: ['Нет', 'Да', 'Может быть', 'Конечно'],
@@ -30,9 +31,9 @@ export class Game {
         },
     ]
 
-        questionNumber = 0;
+    questionNumber = 0;
 
-        answerNumber = 0;
+    answerNumber = 0;
 
     renderStartButton() {
         const startButton = document.createElement('button');
