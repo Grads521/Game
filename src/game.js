@@ -5,7 +5,7 @@ export class Game {
         myQuestions = [
         {
             question: 'Мой вопрос 1',
-            answer: ['0', '1', '2', '3'],
+            answer: ['Нет', 'Да', 'Может быть', 'Конечно'],
             rightAnswer: 3
         },
         {
@@ -30,7 +30,7 @@ export class Game {
         },
     ]
 
-        i = 0;
+        questionNumber = 0;
 
     renderStartButton() {
         const startButton = document.createElement('button');
@@ -43,50 +43,43 @@ export class Game {
 
     start() {
         let showQuestion = document.createElement('div');
-        showQuestion.innerText = this.myQuestions[this.i].question;
-        document.querySelector('.startButton').append(showQuestion);
+        showQuestion.innerText = this.myQuestions[this.questionNumber].question;
+        document.querySelector('.showQuestion').append(showQuestion);
 
-        const acceptButton = document.createElement('button')
+        const acceptButton = document.createElement('button');
+        acceptButton.setAttribute('type','submit');
         acceptButton.innerText = 'Подтвердить';
         acceptButton.addEventListener('click',() => {
             this.accept();
         })
         document.querySelector('.acceptButton').append(acceptButton);
+
+        let showAnswer1 = document.createElement('input');
+        showAnswer1.setAttribute('type','radio');
+        showAnswer1.innerText = 'Привет';
+        document.querySelector('.showAnswer').append(showAnswer1);
+
+
+        // const showAnswer1 = document.createElement('input');
+        // showAnswer1.setAttribute('type','radio');
+        // showAnswer1.innerText = this.myQuestions[0].answer[0];
+        // document.querySelector('.startButton').append(showAnswer1);
     }
 
-    nextQuestion() {
-        let nextQuestion = document.createElement('div');
-        nextQuestion.innerHTML = this.myQuestions[this.i].question;
-        document.querySelector('.startButton').append(nextQuestion);
-    }
-
-    accept() {
-        this.i = i + 1;
-        this.nextQuestion();
-        i++;
-
-    }
+    // nextQuestion() {
+    //     let nextQuestion = document.createElement('div');
+    //     nextQuestion.innerText = this.myQuestions[this.questionNumber].question;
+    //     document.querySelector('.startButton').append(nextQuestion);
+    // }
+    //
+    // accept() {
+    //     this.questionNumber = this.questionNumber + 1;
+    //     document.querySelector('.startButton').innerHTML = '';
+    //     this.nextQuestion();
+    // }
 }
 
-// const showAnswer1 = document.createElement('input');
-// showAnswer1.setAttribute('type','radio');
-// // showAnswer1.innerText = this.myQuestions[0].answer;
-// document.querySelector('.startButton').append(showAnswer1);
-//
-// const showAnswer2 = document.createElement('input');
-// showAnswer2.setAttribute('type','radio');
-// // showAnswer2.innerText = this.myQuestions[0].answer;
-// document.querySelector('.startButton').append(showAnswer2);
-//
-// const showAnswer3 = document.createElement('input');
-// showAnswer3.setAttribute('type','radio');
-// // showAnswer3.innerText = this.myQuestions[0].answer;
-// document.querySelector('.startButton').append(showAnswer3);
-//
-// const showAnswer4 = document.createElement('input');
-// showAnswer4.setAttribute('type','radio');
-// // showAnswer4.innerText = this.myQuestions[0].answer;
-// document.querySelector('.startButton').append(showAnswer4);
+
 
 
 
