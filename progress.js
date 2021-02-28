@@ -1,11 +1,11 @@
 function addArr() {
-    myChapters.forEach(function (item) {
+    myChapters.forEach((item) => {
 
         let newChapter = document.createElement('li');
         newChapter.innerText = item;
 
         chapterBlock.append(newChapter);
-    })
+    });
 } /* повторяющаяся функция */
 
 let myChapters = [
