@@ -1,6 +1,7 @@
 import {Game} from './src/game.js';
 
 const mainQuestion = document.createElement('div');
+mainQuestion.setAttribute('class', 'nameGame');
 mainQuestion.innerText = 'Кто хочет стать миллионером?';
 document.querySelector('.begin').append(mainQuestion);
 

@@ -4,13 +4,23 @@
 
 }
 
+@font-face {
+  font-family: "Geometria";
+  src: url("fonts/geometria.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "boldGeometria";
+  src: url("/fonts/geometria-bold.ttf") format("opentype");
+}
+
 .positioner {
   width: 1400px;
   margin: 0 auto;
 }
 
 body {
-  background-color: pink;
+  background-color: #130621;
 }
 
 header {
@@ -18,17 +28,16 @@ header {
   padding-top: 5px;
   padding-bottom: 5px;
   list-style: none;
-  background-color: #050505;
+  background-color: #ffeb8f;
 
   width: 100%;
-  font-size: 14px;
+  font-size: 20px;
   line-height: 1.4;
-  font-family: "Arial", sans-serif;
+  font-family: "boldGeometria", sans-serif;
 }
 
 .menu {
   &-container {
-    // TODO: почитать про flex и переверстать меню по флексам
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -43,7 +52,7 @@ header {
       }
 
       a {
-        color: #ffffff;
+        color: #130621;
         text-decoration: none;
       }
 
@@ -54,20 +63,52 @@ header {
 }
 
 main {
-  position: relative;
-  background-color: #444341;
+     position: relative;
+     background-color: #cd9c71;
 
-  width: 100%;
-  height: 3710px;
+     width: 100%;
+     height: 1010px;
+     line-height: 1.4;
+     font-family: "Geometria", sans-serif;
+     list-style: none;
 
-  list-style: none;
+     .nameGame {
+     font-family: "boldGeometria", sans-serif;
+     font-size: 34px;
+     color: #130621;
 
-  div {
-    color: white;
-  }
-  li {
-    color: white;
-    margin-left:20px;
-  }
+     padding-left: 300px;
+     padding-top: 50px;
+     }
+
+     button {
+     color: white;
+     background-color: #5e3b8b;
+     font-family: "Geometria", sans-serif;
+     font-size: 16px;
+     }
+
+     .button {
+     margin-top: 100px;
+     margin-left: 300px;
+     }
+
+     .showQuestion {
+     font-family: "boldGeometria", sans-serif;
+     font-size: 26px;
+     color: #5e3b8b;
+
+     margin-left: 300px;
+     }
+
+     .allAnswer {
+     font-family: "Geometria", sans-serif;
+     font-size: 18px;
+
+     margin-left: 300px;
+     }
+
+     .acceptButton {
+     margin-left: 300px;
+     }
 }
-
