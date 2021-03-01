@@ -36,7 +36,7 @@ export class Game {
     renderStartButton() {
         let startButton = document.createElement('button');
         startButton.setAttribute('class', 'button');
-        startButton.innerText = 'СТАРТ';
+        startButton.innerText = 'Старт';
         startButton.addEventListener('click', () => {
             this.start();
         });
@@ -57,16 +57,16 @@ export class Game {
         allAnswer.setAttribute('class', 'allAnswer');
         document.querySelector('.begin').append(allAnswer);
 
-        this.myQuestions[this.questionNumber].answer.forEach((value, index) => {
+        this.myQuestions[this.questionNumber].answer.forEach((value) => {
             const createButtonAnswer = document.createElement('input');
             createButtonAnswer.setAttribute('type', 'radio');
-            createButtonAnswer.setAttribute('id', 'contactAnswer');
-            createButtonAnswer.setAttribute('value', '123');
+            // createButtonAnswer.setAttribute('id', 'contactAnswer');
+            // createButtonAnswer.setAttribute('value', '123');
             document.querySelector('.allAnswer').append(createButtonAnswer);
 
             const showTextAnswer = document.createElement('label');
-            showTextAnswer.setAttribute('for', 'contactAnswer');
-            showTextAnswer.innerText = this.myQuestions[this.questionNumber].answer[index];
+            // showTextAnswer.setAttribute('for', 'contactAnswer');
+            showTextAnswer.innerText = value;
             document.querySelector('.allAnswer').append(showTextAnswer);
         });
 
@@ -90,7 +90,7 @@ export class Game {
     }
 
     nextAnswer() {
-        this.myQuestions[this.questionNumber].answer.forEach((value, index) => {
+        this.myQuestions[this.questionNumber].answer.forEach((value) => {
             const createButtonAnswer = document.createElement('input');
             createButtonAnswer.setAttribute('type', 'radio');
             createButtonAnswer.setAttribute('id', 'contactAnswer');
@@ -99,7 +99,7 @@ export class Game {
 
             const showTextAnswer = document.createElement('label');
             showTextAnswer.setAttribute('for', 'contactAnswer');
-            showTextAnswer.innerText = this.myQuestions[this.questionNumber].answer[index];
+            showTextAnswer.innerText = value;
             document.querySelector('.allAnswer').append(showTextAnswer);
         });
     }
@@ -108,7 +108,7 @@ export class Game {
         this.questionNumber += 1;
         document.querySelector('.showQuestion').innerHTML = '';
         document.querySelector('.allAnswer').innerHTML = '';
-        document.querySelector('.button').hidden = true;
+        // document.querySelector('.button').hidden = true;
         this.nextQuestion();
         this.nextAnswer();
     }
