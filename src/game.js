@@ -113,7 +113,7 @@ export class Game {
         this.questionNumber += 1;
         document.querySelector('.showQuestion').innerHTML = '';
         document.querySelector('.allAnswer').innerHTML = '';
-        // document.querySelector('.button').hidden = true;
+        document.querySelector('.button').hidden = true;
         this.nextQuestion();
         this.nextAnswer();
     }
