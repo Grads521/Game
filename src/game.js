@@ -40,13 +40,10 @@ export class Game {
         startButton.addEventListener('click', () => {
             this.start();
         });
-        document.querySelector('.begin').append(startButton);
+        document.querySelector('.myInfo').append(startButton);
     }
 
     start() {
-        const myInfo = document.createElement('div');
-        myInfo.setAttribute('class', 'myInfo');
-
         const showQuestion = document.createElement('div');
         showQuestion.setAttribute('class', 'showQuestion');
         showQuestion.innerText = this.myQuestions[this.questionNumber].question;
@@ -64,8 +61,6 @@ export class Game {
         acceptButton.addEventListener('click', () => {
             this.accept();
         });
-
-        document.querySelector('.begin').append(myInfo);
 
         document.querySelector('.myInfo').append(showQuestion);
 
