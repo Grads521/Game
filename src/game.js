@@ -34,7 +34,7 @@ export class Game {
     }
 
     renderStartButton() {
-        let startButton = document.createElement('button');
+        const startButton = document.createElement('button');
         startButton.setAttribute('class', 'button');
         startButton.innerText = 'Старт';
         startButton.addEventListener('click', () => {
@@ -57,22 +57,23 @@ export class Game {
         allAnswer.setAttribute('class', 'allAnswer');
         document.querySelector('.begin').append(allAnswer);
 
-        this.myQuestions[this.questionNumber].answer.forEach((value) => {
+        this.myQuestions[this.questionNumber].answer.forEach((value, i) => {
             const createButtonAnswer = document.createElement('input');
             createButtonAnswer.setAttribute('type', 'radio');
-            // createButtonAnswer.setAttribute('id', 'contactAnswer');
-            // createButtonAnswer.setAttribute('value', '123');
-            document.querySelector('.allAnswer').append(createButtonAnswer);
+            createButtonAnswer.setAttribute('id', `answer${i + 1}`);
+            createButtonAnswer.setAttribute('value', `${i + 1}`);
 
             const showTextAnswer = document.createElement('label');
-            // showTextAnswer.setAttribute('for', 'contactAnswer');
+            showTextAnswer.setAttribute('for', `answer${i + 1}`);
             showTextAnswer.innerText = value;
+
+            document.querySelector('.allAnswer').append(createButtonAnswer);
+
             document.querySelector('.allAnswer').append(showTextAnswer);
         });
 
         const createDivAcceptButton = document.createElement('div');
         createDivAcceptButton.setAttribute('class', 'acceptButton');
-        document.querySelector('.begin').append(createDivAcceptButton);
 
         const acceptButton = document.createElement('button');
         acceptButton.setAttribute('type', 'submit');
@@ -80,6 +81,9 @@ export class Game {
         acceptButton.addEventListener('click', () => {
             this.accept();
         });
+
+        document.querySelector('.begin').append(createDivAcceptButton);
+
         document.querySelector('.acceptButton').append(acceptButton);
     }
 
@@ -90,16 +94,18 @@ export class Game {
     }
 
     nextAnswer() {
-        this.myQuestions[this.questionNumber].answer.forEach((value) => {
+        this.myQuestions[this.questionNumber].answer.forEach((value, i) => {
             const createButtonAnswer = document.createElement('input');
             createButtonAnswer.setAttribute('type', 'radio');
-            createButtonAnswer.setAttribute('id', 'contactAnswer');
-            createButtonAnswer.setAttribute('value', '123');
-            document.querySelector('.allAnswer').append(createButtonAnswer);
+            createButtonAnswer.setAttribute('id', `answer${i + 1}`);
+            createButtonAnswer.setAttribute('value', `${i + 1}`);
 
             const showTextAnswer = document.createElement('label');
-            showTextAnswer.setAttribute('for', 'contactAnswer');
             showTextAnswer.innerText = value;
+            showTextAnswer.setAttribute('for', `answer${i + 1}`);
+
+            document.querySelector('.allAnswer').append(createButtonAnswer);
+
             document.querySelector('.allAnswer').append(showTextAnswer);
         });
     }
