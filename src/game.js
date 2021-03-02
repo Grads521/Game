@@ -44,18 +44,36 @@ export class Game {
     }
 
     start() {
-        // let createForm = document.createElement('form');
-        // createForm.setAttribute('class','info');
-        // document.querySelector('.begin').append(createForm);
+        const myInfo = document.createElement('div');
+        myInfo.setAttribute('class', 'myInfo');
 
         const showQuestion = document.createElement('div');
         showQuestion.setAttribute('class', 'showQuestion');
         showQuestion.innerText = this.myQuestions[this.questionNumber].question;
-        document.querySelector('.begin').append(showQuestion);
 
         const allAnswer = document.createElement('div');
         allAnswer.setAttribute('class', 'allAnswer');
-        document.querySelector('.begin').append(allAnswer);
+
+        const createDivAcceptButton = document.createElement('div');
+        createDivAcceptButton.setAttribute('class', 'acceptButton');
+
+        const acceptButton = document.createElement('button');
+        acceptButton.setAttribute('type', 'submit');
+        acceptButton.innerText = 'Подтвердить';
+
+        acceptButton.addEventListener('click', () => {
+            this.accept();
+        });
+
+        document.querySelector('.begin').append(myInfo);
+
+        document.querySelector('.myInfo').append(showQuestion);
+
+        document.querySelector('.myInfo').append(allAnswer);
+
+        document.querySelector('.myInfo').append(createDivAcceptButton);
+
+        document.querySelector('.acceptButton').append(acceptButton);
 
         this.myQuestions[this.questionNumber].answer.forEach((value, i) => {
             const createButtonAnswer = document.createElement('input');
@@ -71,20 +89,6 @@ export class Game {
 
             document.querySelector('.allAnswer').append(showTextAnswer);
         });
-
-        const createDivAcceptButton = document.createElement('div');
-        createDivAcceptButton.setAttribute('class', 'acceptButton');
-
-        const acceptButton = document.createElement('button');
-        acceptButton.setAttribute('type', 'submit');
-        acceptButton.innerText = 'Подтвердить';
-        acceptButton.addEventListener('click', () => {
-            this.accept();
-        });
-
-        document.querySelector('.begin').append(createDivAcceptButton);
-
-        document.querySelector('.acceptButton').append(acceptButton);
     }
 
     nextQuestion() {
