@@ -62,11 +62,13 @@ export class Game {
             this.accept();
         });
 
-        document.querySelector('.myInfo').append(showQuestion);
+        const info = document.querySelector('.myInfo');
 
-        document.querySelector('.myInfo').append(allAnswer);
+        info.append(showQuestion);
 
-        document.querySelector('.myInfo').append(createDivAcceptButton);
+        info.append(allAnswer);
+
+        info.append(createDivAcceptButton);
 
         document.querySelector('.acceptButton').append(acceptButton);
 
