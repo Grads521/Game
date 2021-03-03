@@ -44,9 +44,9 @@ export class Game {
     }
 
     start() {
-        const createForm = document.createElement('form');
-        createForm.setAttribute('class', 'createForm');
-        document.querySelector('.wrapper').append(createForm);
+        // const createDiv = document.createElement('div');
+        // createDiv.setAttribute('class', 'createDiv');
+        // document.querySelector('.wrapper').append(createDiv);
 
         const showQuestion = document.createElement('div');
         showQuestion.setAttribute('class', 'showQuestion');
@@ -66,7 +66,7 @@ export class Game {
             this.accept();
         });
 
-        const info = document.querySelector('.createForm');
+        const info = document.querySelector('.wrapper');
 
         info.append(showQuestion);
 
@@ -105,6 +105,7 @@ export class Game {
             createButtonAnswer.setAttribute('type', 'radio');
             createButtonAnswer.setAttribute('id', `answer${i + 1}`);
             createButtonAnswer.setAttribute('value', `${i + 1}`);
+            createButtonAnswer.setAttribute('name', 'contact');
 
             const showTextAnswer = document.createElement('label');
             showTextAnswer.innerText = value;
