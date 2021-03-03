@@ -35,15 +35,19 @@ export class Game {
 
     renderStartButton() {
         const startButton = document.createElement('button');
-        startButton.setAttribute('class', 'button');
+        startButton.setAttribute('class', 'startButton');
         startButton.innerText = 'Старт';
         startButton.addEventListener('click', () => {
             this.start();
         });
-        document.querySelector('.myInfo').append(startButton);
+        document.querySelector('.wrapper').append(startButton);
     }
 
     start() {
+        const createForm = document.createElement('form');
+        createForm.setAttribute('class', 'createForm');
+        document.querySelector('.wrapper').append(createForm);
+
         const showQuestion = document.createElement('div');
         showQuestion.setAttribute('class', 'showQuestion');
         showQuestion.innerText = this.myQuestions[this.questionNumber].question;
@@ -62,7 +66,7 @@ export class Game {
             this.accept();
         });
 
-        const info = document.querySelector('.myInfo');
+        const info = document.querySelector('.createForm');
 
         info.append(showQuestion);
 
@@ -76,7 +80,8 @@ export class Game {
             const createButtonAnswer = document.createElement('input');
             createButtonAnswer.setAttribute('type', 'radio');
             createButtonAnswer.setAttribute('id', `answer${i + 1}`);
-            createButtonAnswer.setAttribute('value', `${i + 1}`);
+            createButtonAnswer.setAttribute('value', `value${i + 1}`);
+            createButtonAnswer.setAttribute('name', 'contact');
 
             const showTextAnswer = document.createElement('label');
             showTextAnswer.setAttribute('for', `answer${i + 1}`);
@@ -112,10 +117,11 @@ export class Game {
     }
 
     accept() {
+
         this.questionNumber += 1;
         document.querySelector('.showQuestion').innerHTML = '';
         document.querySelector('.allAnswer').innerHTML = '';
-        document.querySelector('.button').hidden = true;
+        document.querySelector('.startButton').hidden = true;
         this.nextQuestion();
         this.nextAnswer();
     }
