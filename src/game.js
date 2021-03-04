@@ -50,6 +50,8 @@ export class Game {
 
         document.querySelector('.startButton').hidden = true;
 
+        213
+
         const showQuestion = document.createElement('div');
         showQuestion.setAttribute('class', 'showQuestion');
         showQuestion.innerText = this.myQuestions[this.questionNumber].question;
