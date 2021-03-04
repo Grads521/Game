@@ -1,4 +1,8 @@
 .cache
+.idea
+fonts
+test.html
+test.js
 node_modules
 readme.md
 dist
