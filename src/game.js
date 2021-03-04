@@ -40,7 +40,7 @@ export class Game {
         startButton.addEventListener('click', () => {
             this.start();
         });
-        document.querySelector('.myInfo').append(startButton);
+        document.querySelector('.wrapper').append(startButton);
     }
 
     start() {
@@ -64,7 +64,7 @@ export class Game {
             this.accept();
         });
 
-        const info = document.querySelector('.myInfo');
+        const info = document.querySelector('.wrapper');
 
         info.append(showQuestion);
 
