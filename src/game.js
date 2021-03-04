@@ -48,6 +48,8 @@ export class Game {
         // createDiv.setAttribute('class', 'createDiv');
         // document.querySelector('.wrapper').append(createDiv);
 
+        document.querySelector('.startButton').hidden = true;
+
         const showQuestion = document.createElement('div');
         showQuestion.setAttribute('class', 'showQuestion');
         showQuestion.innerText = this.myQuestions[this.questionNumber].question;
@@ -122,7 +124,6 @@ export class Game {
         this.questionNumber += 1;
         document.querySelector('.showQuestion').innerHTML = '';
         document.querySelector('.allAnswer').innerHTML = '';
-        document.querySelector('.startButton').hidden = true;
         this.nextQuestion();
         this.nextAnswer();
     }
