@@ -1,16 +1,12 @@
 import {Game} from './src/game.js';
 
-const myInfo = document.createElement('div');
-myInfo.setAttribute('class', 'myInfo');
-document.querySelector('.begin').append(myInfo);
+const wrapper = document.createElement('div');
+wrapper.setAttribute('class', 'wrapper');
+document.querySelector('.begin').append(wrapper);
 
 const mainQuestion = document.createElement('div');
 mainQuestion.setAttribute('class', 'nameGame');
 mainQuestion.innerText = 'Кто хочет стать миллионером?';
-document.querySelector('.myInfo').append(mainQuestion);
-
-// const createDivStartButton = document.createElement('div');
-// createDivStartButton.setAttribute('class', 'startButton');
-// document.querySelector('.begin').append(createDivStartButton);
+document.querySelector('.wrapper').append(mainQuestion);
 
 new Game();

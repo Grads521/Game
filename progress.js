@@ -1,7 +1,6 @@
 function addArr() {
     myChapters.forEach((item) => {
-
-        let newChapter = document.createElement('li');
+        const newChapter = document.createElement('li');
         newChapter.innerText = item;
 
         chapterBlock.append(newChapter);
@@ -22,10 +21,10 @@ const buttonAddChapter = document.querySelector('.addChapter');
 
 buttonAddChapter.addEventListener('click', addChapter);
 
-function addChapter () {
+function addChapter() {
     chapterBlock.innerHTML = null;
 
-    let textChapter = document.querySelector('.inputText').value;
+    const textChapter = document.querySelector('.inputText').value;
 
     myChapters.push(textChapter);
 
@@ -41,4 +40,3 @@ buttonCleanText.addEventListener('click', cleanText);
 function cleanText() {
     document.querySelector('.inputText').value = '';
 }
-
