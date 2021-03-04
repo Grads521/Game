@@ -79,6 +79,7 @@ export class Game {
             createButtonAnswer.setAttribute('type', 'radio');
             createButtonAnswer.setAttribute('id', `answer${i + 1}`);
             createButtonAnswer.setAttribute('value', `${i + 1}`);
+            createButtonAnswer.setAttribute('name', 'answers');
 
             const showTextAnswer = document.createElement('label');
             showTextAnswer.setAttribute('for', `answer${i + 1}`);
@@ -102,6 +103,7 @@ export class Game {
             createButtonAnswer.setAttribute('type', 'radio');
             createButtonAnswer.setAttribute('id', `answer${i + 1}`);
             createButtonAnswer.setAttribute('value', `${i + 1}`);
+            createButtonAnswer.setAttribute('name', 'answers');
 
             const showTextAnswer = document.createElement('label');
             showTextAnswer.innerText = value;
