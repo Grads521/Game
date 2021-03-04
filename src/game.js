@@ -47,7 +47,7 @@ export class Game {
         // const createDiv = document.createElement('div');
         // createDiv.setAttribute('class', 'createDiv');
         // document.querySelector('.wrapper').append(createDiv);
-1
+
         document.querySelector('.startButton').hidden = true;
 
         const showQuestion = document.createElement('div');
