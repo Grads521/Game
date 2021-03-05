@@ -38,88 +38,88 @@ export class Game {
         startButton.setAttribute('class', 'button');
         startButton.innerText = 'Старт';
         startButton.addEventListener('click', () => {
-            this.start();
+            this.activateStartButton();
         });
         document.querySelector('.wrapper').append(startButton);
     }
 
-    start() {
+    activateStartButton() {
         document.querySelector('.button').hidden = true;
 
-        const showQuestion = document.createElement('div');
-        showQuestion.setAttribute('class', 'showQuestion');
-        showQuestion.innerText = this.myQuestions[this.questionNumber].question;
+        const question = document.createElement('div');
+        question.setAttribute('class', 'question');
+        question.innerText = this.myQuestions[this.questionNumber].question;
 
         const allAnswer = document.createElement('div');
         allAnswer.setAttribute('class', 'allAnswer');
 
-        const createDivAcceptButton = document.createElement('div');
-        createDivAcceptButton.setAttribute('class', 'acceptButton');
+        const divAcceptButton = document.createElement('div');
+        divAcceptButton.setAttribute('class', 'acceptButton');
 
         const acceptButton = document.createElement('button');
         acceptButton.setAttribute('type', 'submit');
         acceptButton.innerText = 'Подтвердить';
 
         acceptButton.addEventListener('click', () => {
-            this.accept();
+            this.activateAcceptButton();
         });
 
         const info = document.querySelector('.wrapper');
 
-        info.append(showQuestion);
+        info.append(question);
 
         info.append(allAnswer);
 
-        info.append(createDivAcceptButton);
+        info.append(divAcceptButton);
 
         document.querySelector('.acceptButton').append(acceptButton);
 
         this.myQuestions[this.questionNumber].answer.forEach((value, i) => {
-            const createButtonAnswer = document.createElement('input');
-            createButtonAnswer.setAttribute('type', 'radio');
-            createButtonAnswer.setAttribute('id', `answer${i + 1}`);
-            createButtonAnswer.setAttribute('value', `${i + 1}`);
-            createButtonAnswer.setAttribute('name', 'answers');
+            const answer = document.createElement('input');
+            answer.setAttribute('type', 'radio');
+            answer.setAttribute('id', `answer${i + 1}`);
+            answer.setAttribute('value', `${i + 1}`);
+            answer.setAttribute('name', 'answers');
 
-            const showTextAnswer = document.createElement('label');
-            showTextAnswer.setAttribute('for', `answer${i + 1}`);
-            showTextAnswer.innerText = value;
+            const textAnswer = document.createElement('label');
+            textAnswer.setAttribute('for', `answer${i + 1}`);
+            textAnswer.innerText = value;
 
-            document.querySelector('.allAnswer').append(createButtonAnswer);
+            document.querySelector('.allAnswer').append(answer);
 
-            document.querySelector('.allAnswer').append(showTextAnswer);
+            document.querySelector('.allAnswer').append(textAnswer);
         });
     }
 
-    nextQuestion() {
+    getNextQuestion() {
         const nextQuestion = document.createElement('div');
         nextQuestion.innerText = this.myQuestions[this.questionNumber].question;
-        document.querySelector('.showQuestion').append(nextQuestion);
+        document.querySelector('.question').append(nextQuestion);
     }
 
-    nextAnswer() {
+    getNextAnswer() {
         this.myQuestions[this.questionNumber].answer.forEach((value, i) => {
-            const createButtonAnswer = document.createElement('input');
-            createButtonAnswer.setAttribute('type', 'radio');
-            createButtonAnswer.setAttribute('id', `answer${i + 1}`);
-            createButtonAnswer.setAttribute('value', `${i + 1}`);
-            createButtonAnswer.setAttribute('name', 'answers');
+            const answer = document.createElement('input');
+            answer.setAttribute('type', 'radio');
+            answer.setAttribute('id', `answer${i + 1}`);
+            answer.setAttribute('value', `${i + 1}`);
+            answer.setAttribute('name', 'answers');
 
-            const showTextAnswer = document.createElement('label');
-            showTextAnswer.innerText = value;
-            showTextAnswer.setAttribute('for', `answer${i + 1}`);
+            const textAnswer = document.createElement('label');
+            textAnswer.innerText = value;
+            textAnswer.setAttribute('for', `answer${i + 1}`);
 
-            document.querySelector('.allAnswer').append(createButtonAnswer);
+            document.querySelector('.allAnswer').append(answer);
 
-            document.querySelector('.allAnswer').append(showTextAnswer);
+            document.querySelector('.allAnswer').append(textAnswer);
         });
     }
 
-    accept() {
+    activateAcceptButton() {
         this.questionNumber += 1;
-        document.querySelector('.showQuestion').innerHTML = '';
+        document.querySelector('.question').innerHTML = '';
         document.querySelector('.allAnswer').innerHTML = '';
-        this.nextQuestion();
-        this.nextAnswer();
+        this.getNextQuestion();
+        this.getNextAnswer();
     }
 }
