@@ -81,7 +81,7 @@ export class Game {
 
     getAnswer() {
         this.myQuestions[this.questionNumber].answer.forEach((value, i) => {
-            const answer = this.createNode('input', {type: 'radio', id: `answer${i + 1}`, value: `${i + 1}`, name: 'answers'});
+            const answer = this.createNode('input', {type: 'radio', className: 'answers', id: `answer${i + 1}`, value: `${i + 1}`, name: 'answers'});
 
             const textAnswer = this.createNode('label', {for: `answer${i + 1}`, textContent: value});
 
@@ -92,10 +92,15 @@ export class Game {
     }
 
     activateAcceptButton() {
-        this.questionNumber += 1;
-        document.querySelector('.question').innerHTML = '';
-        document.querySelector('.allAnswer').innerHTML = '';
-        this.getNextQuestion();
-        this.getAnswer();
+        const checkRadio = document.querySelector('input[name="answers"]:checked');
+        if (checkRadio != null) {
+            this.questionNumber += 1;
+            document.querySelector('.question').innerHTML = '';
+            document.querySelector('.allAnswer').innerHTML = '';
+            this.getNextQuestion();
+            this.getAnswer();
+        } else {
+            alert('Выберите ответ');
+        }
     }
 }
