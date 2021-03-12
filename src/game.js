@@ -55,19 +55,20 @@ export class Game {
 
         const createDivAcceptButton = this.createNode('div', {className: 'acceptButton'});
 
+
         const acceptButton = this.createNode('button', {type: 'submit', textContent: 'Подтвердить'});
 
         acceptButton.addEventListener('click', () => {
-            this.accept();
+            this.activateAcceptButton();
         });
 
         const info = document.querySelector('.wrapper');
 
-        info.append(showQuestion);
+        info.append(question);
 
         info.append(allAnswer);
 
-        info.append(createDivAcceptButton);
+        info.append(divAcceptButton);
 
         document.querySelector('.acceptButton').append(acceptButton);
 
@@ -76,9 +77,9 @@ export class Game {
 
             const showTextAnswer = this.createNode('label', {for: `answer${i + 1}`, textContent: value});
 
-            document.querySelector('.allAnswer').append(createButtonAnswer);
+            document.querySelector('.allAnswer').append(answer);
 
-            document.querySelector('.allAnswer').append(showTextAnswer);
+            document.querySelector('.allAnswer').append(textAnswer);
         });
     }
 
@@ -87,23 +88,23 @@ export class Game {
         document.querySelector('.showQuestion').append(nextQuestion);
     }
 
-    nextAnswer() {
+    getNextAnswer() {
         this.myQuestions[this.questionNumber].answer.forEach((value, i) => {
             const createButtonAnswer = this.createNode('input', {type: 'radio', id: `answer${i + 1}`, value: `${i + 1}`, name: 'answers'});
 
             const showTextAnswer = this.createNode('label', {for: `answer${i + 1}`, textContent: value});
 
-            document.querySelector('.allAnswer').append(createButtonAnswer);
+            document.querySelector('.allAnswer').append(answer);
 
-            document.querySelector('.allAnswer').append(showTextAnswer);
+            document.querySelector('.allAnswer').append(textAnswer);
         });
     }
 
-    accept() {
+    activateAcceptButton() {
         this.questionNumber += 1;
-        document.querySelector('.showQuestion').innerHTML = '';
+        document.querySelector('.question').innerHTML = '';
         document.querySelector('.allAnswer').innerHTML = '';
-        this.nextQuestion();
-        this.nextAnswer();
+        this.getNextQuestion();
+        this.getNextAnswer();
     }
 }

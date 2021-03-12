@@ -1,95 +1,74 @@
 * {
   padding: 0;
   margin: 0;
-
 }
-
 @font-face {
   font-family: "Geometria";
   src: url("fonts/geometria.ttf") format("opentype");
 }
-
 @font-face {
   font-family: "boldGeometria";
   src: url("/fonts/geometria-bold.ttf") format("opentype");
 }
-
 .positioner {
   width: 1024px;
   margin: 0 auto;
 }
-
 body {
   background-color: #1c1a1a;
 }
-
 header {
   margin: 0;
   padding-top: 5px;
   padding-bottom: 5px;
   list-style: none;
   background-color: #ffeb8f;
-
   width: 100%;
   font-size: 20px;
   line-height: 1.4;
   font-family: "boldGeometria", sans-serif;
 }
-
 .menu {
   &-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-
     nav {
       padding-left: 10px;
     }
-
     nav a {
       padding: 8px 10px;
     }
-
     a {
       color: #130621;
       text-decoration: none;
     }
-
     li {
       display: inline-block;
     }
   }
 }
-
 main {
   position: relative;
   background-color: #cd9c71;
-
   width: 100%;
   height: 100vh;
   line-height: 1.4;
   font-family: "Geometria", sans-serif;
   list-style: none;
-
-
-
   ol {
     margin-left: 20px;
   }
-
   .wrapper {
     padding: 15px;
   }
-
   .nameGame {
     font-family: "boldGeometria", sans-serif;
     font-size: 34px;
     color: #130621;
-
     padding-top: 15px;
   }
-
   button {
     color: white;
     background-color: #5e3b8b;
@@ -99,18 +78,14 @@ main {
     border-radius: 6px;
     border: 0;
   }
-
   .button {
     margin-top: 20px;
   }
-
   .showQuestion {
     font-family: "boldGeometria", sans-serif;
     font-size: 26px;
     color: #5e3b8b;
-
   }
-
   .allAnswer {
     font-family: "Geometria", sans-serif;
     font-size: 18px;
