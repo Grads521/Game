@@ -26,7 +26,6 @@ export class Game {
             rightAnswer: 3,
         },
     ]
-
     questionNumber = 0;
 
     constructor() {
@@ -34,31 +33,30 @@ export class Game {
     }
 
     renderStartButton() {
-        const startButton = document.createElement('button');
-        startButton.setAttribute('class', 'button');
-        startButton.innerText = 'Старт';
+        const startButton = this.createNode('button', {className: 'button', textContent: 'Старт'});
         startButton.addEventListener('click', () => {
-            this.activateStartButton();
+            this.start();
         });
         document.querySelector('.wrapper').append(startButton);
     }
 
-    activateStartButton() {
+    createNode(element, attributes) {
+        const elem = document.createElement(element);
+        Object.assign(elem, attributes);
+        return elem;
+    }
+
+    start() {
         document.querySelector('.button').hidden = true;
 
-        const question = document.createElement('div');
-        question.setAttribute('class', 'question');
-        question.innerText = this.myQuestions[this.questionNumber].question;
+        const showQuestion = this.createNode('div', {className: 'showQuestion', textContent: this.myQuestions[this.questionNumber].question});
 
-        const allAnswer = document.createElement('div');
-        allAnswer.setAttribute('class', 'allAnswer');
+        const allAnswer = this.createNode('div', {className: 'allAnswer'});
 
-        const divAcceptButton = document.createElement('div');
-        divAcceptButton.setAttribute('class', 'acceptButton');
+        const createDivAcceptButton = this.createNode('div', {className: 'acceptButton'});
 
-        const acceptButton = document.createElement('button');
-        acceptButton.setAttribute('type', 'submit');
-        acceptButton.innerText = 'Подтвердить';
+
+        const acceptButton = this.createNode('button', {type: 'submit', textContent: 'Подтвердить'});
 
         acceptButton.addEventListener('click', () => {
             this.activateAcceptButton();
@@ -75,15 +73,9 @@ export class Game {
         document.querySelector('.acceptButton').append(acceptButton);
 
         this.myQuestions[this.questionNumber].answer.forEach((value, i) => {
-            const answer = document.createElement('input');
-            answer.setAttribute('type', 'radio');
-            answer.setAttribute('id', `answer${i + 1}`);
-            answer.setAttribute('value', `${i + 1}`);
-            answer.setAttribute('name', 'answers');
+            const createButtonAnswer = this.createNode('input', {type: 'radio', id: `answer${i + 1}`, value: `${i + 1}`, name: 'answers'});
 
-            const textAnswer = document.createElement('label');
-            textAnswer.setAttribute('for', `answer${i + 1}`);
-            textAnswer.innerText = value;
+            const showTextAnswer = this.createNode('label', {for: `answer${i + 1}`, textContent: value});
 
             document.querySelector('.allAnswer').append(answer);
 
@@ -91,23 +83,16 @@ export class Game {
         });
     }
 
-    getNextQuestion() {
-        const nextQuestion = document.createElement('div');
-        nextQuestion.innerText = this.myQuestions[this.questionNumber].question;
-        document.querySelector('.question').append(nextQuestion);
+    nextQuestion() {
+        const nextQuestion = this.createNode('div', {textContent: this.myQuestions[this.questionNumber].question});
+        document.querySelector('.showQuestion').append(nextQuestion);
     }
 
     getNextAnswer() {
         this.myQuestions[this.questionNumber].answer.forEach((value, i) => {
-            const answer = document.createElement('input');
-            answer.setAttribute('type', 'radio');
-            answer.setAttribute('id', `answer${i + 1}`);
-            answer.setAttribute('value', `${i + 1}`);
-            answer.setAttribute('name', 'answers');
+            const createButtonAnswer = this.createNode('input', {type: 'radio', id: `answer${i + 1}`, value: `${i + 1}`, name: 'answers'});
 
-            const textAnswer = document.createElement('label');
-            textAnswer.innerText = value;
-            textAnswer.setAttribute('for', `answer${i + 1}`);
+            const showTextAnswer = this.createNode('label', {for: `answer${i + 1}`, textContent: value});
 
             document.querySelector('.allAnswer').append(answer);
 
