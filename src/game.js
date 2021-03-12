@@ -49,12 +49,11 @@ export class Game {
     start() {
         document.querySelector('.button').hidden = true;
 
-        const showQuestion = this.createNode('div', {className: 'showQuestion', textContent: this.myQuestions[this.questionNumber].question});
+        const question = this.createNode('div', {className: 'question', textContent: this.myQuestions[this.questionNumber].question});
 
         const allAnswer = this.createNode('div', {className: 'allAnswer'});
 
-        const createDivAcceptButton = this.createNode('div', {className: 'acceptButton'});
-
+        const divAcceptButton = this.createNode('div', {className: 'acceptButton'});
 
         const acceptButton = this.createNode('button', {type: 'submit', textContent: 'Подтвердить'});
 
@@ -72,27 +71,19 @@ export class Game {
 
         document.querySelector('.acceptButton').append(acceptButton);
 
-        this.myQuestions[this.questionNumber].answer.forEach((value, i) => {
-            const createButtonAnswer = this.createNode('input', {type: 'radio', id: `answer${i + 1}`, value: `${i + 1}`, name: 'answers'});
-
-            const showTextAnswer = this.createNode('label', {for: `answer${i + 1}`, textContent: value});
-
-            document.querySelector('.allAnswer').append(answer);
-
-            document.querySelector('.allAnswer').append(textAnswer);
-        });
+        this.getAnswer();
     }
 
-    nextQuestion() {
+    getNextQuestion() {
         const nextQuestion = this.createNode('div', {textContent: this.myQuestions[this.questionNumber].question});
-        document.querySelector('.showQuestion').append(nextQuestion);
+        document.querySelector('.question').append(nextQuestion);
     }
 
-    getNextAnswer() {
+    getAnswer() {
         this.myQuestions[this.questionNumber].answer.forEach((value, i) => {
-            const createButtonAnswer = this.createNode('input', {type: 'radio', id: `answer${i + 1}`, value: `${i + 1}`, name: 'answers'});
+            const answer = this.createNode('input', {type: 'radio', id: `answer${i + 1}`, value: `${i + 1}`, name: 'answers'});
 
-            const showTextAnswer = this.createNode('label', {for: `answer${i + 1}`, textContent: value});
+            const textAnswer = this.createNode('label', {for: `answer${i + 1}`, textContent: value});
 
             document.querySelector('.allAnswer').append(answer);
 
@@ -105,6 +96,6 @@ export class Game {
         document.querySelector('.question').innerHTML = '';
         document.querySelector('.allAnswer').innerHTML = '';
         this.getNextQuestion();
-        this.getNextAnswer();
+        this.getAnswer();
     }
 }
