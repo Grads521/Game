@@ -49,7 +49,7 @@ export class Game {
     start() {
         document.querySelector('.button').hidden = true;
 
-        const question = this.createNode('div', {className: 'showQuestion', textContent: this.myQuestions[this.questionNumber].question});
+        const question = this.createNode('div', {className: 'question', textContent: this.myQuestions[this.questionNumber].question});
 
         const allAnswer = this.createNode('div', {className: 'allAnswer'});
 
@@ -76,7 +76,7 @@ export class Game {
 
     getNextQuestion() {
         const nextQuestion = this.createNode('div', {textContent: this.myQuestions[this.questionNumber].question});
-        document.querySelector('.showQuestion').append(nextQuestion);
+        document.querySelector('.question').append(nextQuestion);
     }
 
     getAnswer() {
