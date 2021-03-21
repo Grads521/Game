@@ -3,30 +3,31 @@ export class Game {
         {
             question: 'Ио это спутник...?',
             answer: ['Земли', 'Марса', 'Юпитера', 'Венеры'],
-            rightAnswer: 3,
+            rightAnswer: 2,
         },
         {
             question: 'На какой планете кратеры называют в честь деятелей культуры?',
             answer: ['Меркурий', 'Нептун', 'Венера', 'Марс'],
-            rightAnswer: 1,
+            rightAnswer: 0,
         },
         {
             question: 'Сколько спутников Юпитера было открыто Галилео Галилеем?',
             answer: ['2', '5', '12', '4'],
-            rightAnswer: 4,
+            rightAnswer: 3,
         },
         {
             question: 'Какое небесное тело вращается вокруг Земли?',
             answer: ['Луна', 'Юпитер', 'Фобос', 'Уран'],
-            rightAnswer: 1,
+            rightAnswer: 0,
         },
         {
             question: 'Какова температура закипания воды в градусах по Цельсию?',
             answer: ['80', '0', '40', '100'],
-            rightAnswer: 4,
+            rightAnswer: 3,
         },
     ]
     questionNumber = 0;
+    userRightAnswer = 0;
 
     constructor() {
         this.renderStartButton();
@@ -60,6 +61,14 @@ export class Game {
         acceptButton.addEventListener('click', () => {
             this.activateAcceptButton();
         });
+
+        const compareAnswers = new CustomEvent('my-event', {
+            detail: {
+                number1: this.questionNumber,
+                number2: this.userRightAnswer,
+            },
+        });
+        acceptButton.dispatchEvent(compareAnswers);
 
         const info = document.querySelector('.wrapper');
 
@@ -101,6 +110,11 @@ export class Game {
             this.getAnswer();
         } else {
             alert('Выберите ответ');
+        }
+        if (this.myQuestions[this.questionNumber].rightAnswer === this.myQuestions[this.questionNumber].answer) {
+            this.userRightAnswer += 1;
+        } else {
+            this.userRightAnswer += 0;
         }
     }
 }
