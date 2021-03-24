@@ -27,7 +27,6 @@ export class Game {
         },
     ]
     questionNumber = 0;
-    userRightAnswer = 0;
 
     constructor() {
         this.renderStartButton();
@@ -48,6 +47,8 @@ export class Game {
     }
 
     start() {
+        const currentQuestion = this.myQuestions[this.questionNumber];
+
         document.querySelector('.button').hidden = true;
 
         const question = this.createNode('div', {className: 'question', textContent: this.myQuestions[this.questionNumber].question});
@@ -61,14 +62,25 @@ export class Game {
         acceptButton.addEventListener('click', () => {
             this.activateAcceptButton();
         });
+        const userLastQuestion = this.questionNumber === 4;
 
-        const compareAnswers = new CustomEvent('my-event', {
-            detail: {
-                number1: this.questionNumber,
-                number2: this.userRightAnswer,
-            },
-        });
-        acceptButton.dispatchEvent(compareAnswers);
+        if (currentQuestion.rightAnswer === currentQuestion.answer) {
+            const compareAnswers = new CustomEvent('my-event', {
+                detail: {
+                    userAnswerChecked: true,
+                    userNumberAnswerChecked: userLastQuestion,
+                },
+            });
+            acceptButton.dispatchEvent(compareAnswers);
+        } else {
+            const compareAnswers = new CustomEvent('my-event', {
+                detail: {
+                    userAnswerChecked: false,
+                    userNumberAnswerChecked: userLastQuestion,
+                },
+            });
+            acceptButton.dispatchEvent(compareAnswers);
+        }
 
         const info = document.querySelector('.wrapper');
 
@@ -110,11 +122,6 @@ export class Game {
             this.getAnswer();
         } else {
             alert('Выберите ответ');
-        }
-        if (this.myQuestions[this.questionNumber].rightAnswer === this.myQuestions[this.questionNumber].answer) {
-            this.userRightAnswer += 1;
-        } else {
-            this.userRightAnswer += 0;
         }
     }
 }
