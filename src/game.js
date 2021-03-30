@@ -47,8 +47,6 @@ export class Game {
     }
 
     start() {
-        const currentQuestion = this.myQuestions[this.questionNumber];
-
         document.querySelector('.button').hidden = true;
 
         const question = this.createNode('div', {className: 'question', textContent: this.myQuestions[this.questionNumber].question});
@@ -62,25 +60,6 @@ export class Game {
         acceptButton.addEventListener('click', () => {
             this.activateAcceptButton();
         });
-        const userLastQuestion = this.questionNumber === 4;
-
-        if (currentQuestion.rightAnswer === currentQuestion.answer) {
-            const compareAnswers = new CustomEvent('my-event', {
-                detail: {
-                    userAnswerChecked: true,
-                    userNumberAnswerChecked: userLastQuestion,
-                },
-            });
-            acceptButton.dispatchEvent(compareAnswers);
-        } else {
-            const compareAnswers = new CustomEvent('my-event', {
-                detail: {
-                    userAnswerChecked: false,
-                    userNumberAnswerChecked: userLastQuestion,
-                },
-            });
-            acceptButton.dispatchEvent(compareAnswers);
-        }
 
         const info = document.querySelector('.wrapper');
 
@@ -95,14 +74,9 @@ export class Game {
         this.getAnswer();
     }
 
-    getNextQuestion() {
-        const nextQuestion = this.createNode('div', {textContent: this.myQuestions[this.questionNumber].question});
-        document.querySelector('.question').append(nextQuestion);
-    }
-
     getAnswer() {
         this.myQuestions[this.questionNumber].answer.forEach((value, i) => {
-            const answer = this.createNode('input', {type: 'radio', className: 'answers', id: `answer${i + 1}`, value: `${i + 1}`, name: 'answers'});
+            const answer = this.createNode('input', {type: 'radio', className: 'answers', id: `answer${i}`, value: `answer${i}`, name: 'answers'});
 
             const textAnswer = this.createNode('label', {for: `answer${i + 1}`, textContent: value});
 
@@ -113,9 +87,25 @@ export class Game {
     }
 
     activateAcceptButton() {
+        this.userLastQuestion = this.questionNumber === 4;
+
+        const currentQuestion = this.myQuestions[this.questionNumber];
+
         const checkRadio = document.querySelector('input[name="answers"]:checked');
+
+        const compareAnswers = new CustomEvent('my-event', {
+            detail: {
+                userAnswerChecked: currentQuestion.rightAnswer === +checkRadio.value[6],
+                userNumberAnswerChecked: this.userLastQuestion,
+            },
+        });
+
         if (checkRadio != null) {
+            document.dispatchEvent(compareAnswers);
             this.questionNumber += 1;
+            if (this.userLastQuestion) {
+                return;
+            }
             document.querySelector('.question').innerHTML = '';
             document.querySelector('.allAnswer').innerHTML = '';
             this.getNextQuestion();
@@ -123,5 +113,10 @@ export class Game {
         } else {
             alert('Выберите ответ');
         }
+    }
+
+    getNextQuestion() {
+        const nextQuestion = this.createNode('div', {textContent: this.myQuestions[this.questionNumber].question});
+        document.querySelector('.question').append(nextQuestion);
     }
 }

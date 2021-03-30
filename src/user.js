@@ -1,30 +1,32 @@
 export class User {
-    userSumAnswer = 0;
-    createNode(element, attributes) {
-        const elem = document.createElement(element);
-        Object.assign(elem, attributes);
-        return elem;
-    }
-    createSumUserAnswer() {
-        const divUserSumAnswer = this.createNode('div', {
-            className: 'userSumAnswer',
-            value: this.userSumAnswer,
-        });
-        document.querySelector('nameGame').append(divUserSumAnswer);
-    }
+    sumAnswer = 0;
     constructor() {
+        let answerChecked = false;
+        let lastQuestion = false;
         document.addEventListener('my-event', (event) => {
-            this.userAnswerChecked = event.detail.userAnswerChecked;
-            this.userLastQuestion = event.detail.userNumberAnswerChecked;
-            if (this.userAnswerChecked === true) {
-                this.userSumAnswer += 1;
+            answerChecked = event.detail.userAnswerChecked;
+            lastQuestion = event.detail.userNumberAnswerChecked;
+            if (answerChecked === true) {
+                this.sumAnswer += 1;
             }
-            if (this.userLastQuestion === true) {
-                this.createSumUserAnswer();
+            if (lastQuestion === true) {
+                this.createSumAnswer();
                 document.querySelector('.question').innerHTML = '';
                 document.querySelector('.allAnswer').innerHTML = '';
                 document.querySelector('.acceptButton').innerHTML = '';
             }
         });
+    }
+    createNode(element, attributes) {
+        const elem = document.createElement(element);
+        Object.assign(elem, attributes);
+        return elem;
+    }
+    createSumAnswer() {
+        const divSumAnswer = this.createNode('div', {
+            className: 'sumAnswer',
+            textContent: `Правильных ответов: ` + this.sumAnswer,
+        });
+        document.querySelector('.nameGame').append(divSumAnswer);
     }
 }
