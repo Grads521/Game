@@ -1,15 +1,12 @@
 export class User {
     sumAnswer = 0;
     constructor() {
-        let answerChecked = false;
-        let lastQuestion = false;
         document.addEventListener('my-event', (event) => {
-            answerChecked = event.detail.userAnswerChecked;
-            lastQuestion = event.detail.userNumberAnswerChecked;
-            if (answerChecked === true) {
+            const {userAnswerChecked, userNumberAnswerChecked} = event.detail;
+            if (userAnswerChecked) {
                 this.sumAnswer += 1;
             }
-            if (lastQuestion === true) {
+            if (userNumberAnswerChecked) {
                 this.createSumAnswer();
                 document.querySelector('.question').innerHTML = '';
                 document.querySelector('.allAnswer').innerHTML = '';
@@ -25,7 +22,7 @@ export class User {
     createSumAnswer() {
         const divSumAnswer = this.createNode('div', {
             className: 'sumAnswer',
-            textContent: `Правильных ответов: ` + this.sumAnswer,
+            textContent: `Правильных ответов: ${this.sumAnswer}`,
         });
         document.querySelector('.nameGame').append(divSumAnswer);
     }
